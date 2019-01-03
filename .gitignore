@@ -1,0 +1,13 @@
+/nbproject/private/
+nbproject/project.properties
+nbproject/genfiles.properties
+nbproject/build-impl.xml
+manifest.mf
+build.xml
+nbproject/project.xml
+src/examples/Find.java
+src/examples/ContactEditor.form
+src/examples/Find.form
+src/examples/ContactEditor.java
+src/examples/Antenna.form
+src/examples/Antenna.java
