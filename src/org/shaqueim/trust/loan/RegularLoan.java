@@ -1,93 +1,84 @@
 package org.shaqueim.trust.loan;
 
+import java.util.Date;
+
+import org.shaqueim.trust.entity.Borrower;
+import org.shaqueim.trust.entity.Lender;
+
 /**
  *
  * @author Shaqueim Cameron cameronofficial.org
  */
 public class RegularLoan implements Loan {
 
-    double  INTEREST_RATE = 0.1,
-            LOAN_AMOUNT = -1,
-            PRINCIPAL_REPAID = 0,
-            INTEREST_PAID = 0
-            ;
-    int     LOAN_PERIOD = -1;
+	
+    private Date 
+    	START, END;
+    private LoanAccounting
+    	ACCOUNTING;
+    private Borrower 
+    	BORROWER;
+    private Lender 
+    	LENDER;
     
-    public RegularLoan(double intr, double loanam, int loanpe) {
-        INTEREST_RATE = intr; //Need to round to 2dp
-        LOAN_AMOUNT = loanam;
-        LOAN_PERIOD = loanpe; // round to nearest integer
-    }
-    
-    @Override
-    public double getInterestRate() {
-        return INTEREST_RATE;
-    }
-
-    @Override
-    public double getLoanAmount() {
-        return LOAN_AMOUNT;
+    /**
+     * Initialize a loan
+     * @param intr Interest Rate
+     * @param loanam Loan Amount
+     * @param loanpe  Loan Type
+     */
+    public RegularLoan(Borrower b, Lender l, double loanam, int loanpe, double intr) {
+    	setLoanAccounting(new LoanAccounting(loanam, loanpe, intr));
+    	setBorrower(b);
+    	setLender(l);
     }
 
-    @Override
-    public int getLoanPeriod() {
-        return LOAN_PERIOD;
-    }
-
-    @Override
-    public double getMonthlyRepayment() {
-        return this.getMonthlyInterestRepayment() + this.getMonthlyPrincipalRepayment();
-    }
-
-    @Override
-    public double getMonthlyInterestRepayment() {
-        return ( this.getLoanAmount() * this.getInterestRate() );
-    }
-
-    @Override
-    public double getMonthlyPrincipalRepayment() {
-        return ( this.getLoanAmount() / this.getLoanPeriod() );
-    }
-
-    @Override
-    public double getPrincipalRepaid() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public double getTotalInterestPaid() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public int getPrincipalOffsetPeriod() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    /**
+     * Gets the next monthly repayment
+     * @return double Next Monthly Repayment
+     */
+    public double getNextMonthlyRepayment() {
+        return getAccounting().getMonthlyInterestRepayment() + getAccounting().getNextPrincipalRepayment();
     }
 
     @Override
     public Date getStartDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return START;
     }
 
     @Override
     public Date getEndDate() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return END;
+    }
+    
+    public Lender getLender() {
+        return LENDER;
     }
 
-    @Override
-    public Entity getLoaner() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Borrower getBorrower() {
+        return BORROWER;
     }
 
-    @Override
-    public Entity getBorrower() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public boolean isActiveLoan() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        return getAccounting().getPrincipalRemaining() == 0;
     }
+
+	public LoanAccounting getAccounting() {
+		return ACCOUNTING;
+	}
+	
+	public void setBorrower(Borrower b) {
+		BORROWER = b;
+	}
+
+	public void setLender(Lender l) {
+		LENDER = l;
+	}
+
+	private void setLoanAccounting(LoanAccounting accounting) {
+		ACCOUNTING = accounting;
+	}
+
 
     
 }

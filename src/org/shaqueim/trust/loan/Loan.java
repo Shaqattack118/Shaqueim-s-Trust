@@ -1,6 +1,9 @@
 package org.shaqueim.trust.loan;
 
-import org.shaqueim.trust.entity.Entity;
+import java.util.Date;
+
+import org.shaqueim.trust.entity.Borrower;
+import org.shaqueim.trust.entity.Lender;
 
 /**
  *
@@ -8,20 +11,40 @@ import org.shaqueim.trust.entity.Entity;
  */
 public interface Loan {
     
-    public double getInterestRate();
-    public double getLoanAmount();
-    public int getLoanPeriod();
-    public double getMonthlyRepayment();
-    public double getMonthlyInterestRepayment();
-    public double getMonthlyPrincipalRepayment();
-    public double getPrincipalRepaid();
-    public double getTotalInterestPaid();
-    public int getPrincipalOffsetPeriod();
+	/**
+	 * Gets the date which the loan as started
+	 * @return Date date
+	 */
     public Date getStartDate();
-    public Date getEndDate();
-    public Entity getLoaner();
-    public Entity getBorrower();
     
+    /**
+     * Gets the date in which the loan is projected to end (given past missed payments 
+     * and principal offset period
+     * @return Date date
+     */
+    public Date getEndDate();
+    
+    /**
+     * Returns the entity who loaned the funds to the borrower
+     * @return Lender l
+     */
+    public Lender getLender();
+    
+    /**
+     * Returns the entity who borrowed the funds from the lender
+     * @return Borrower b
+     */
+    public Borrower getBorrower();
+    
+    /**
+     * Checks if the loan is active (IF there is a principal balance)
+     * @return boolean isActive
+     */
     public boolean isActiveLoan();
     
+    /**
+     * Returns the instance of loan accounting for the loan
+     * @return LoanAccounting loan
+     */
+    public LoanAccounting getAccounting();
 }

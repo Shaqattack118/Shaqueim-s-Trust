@@ -11,3 +11,5 @@ src/examples/Find.form
 src/examples/ContactEditor.java
 src/examples/Antenna.form
 src/examples/Antenna.java
+/build/
+.project
