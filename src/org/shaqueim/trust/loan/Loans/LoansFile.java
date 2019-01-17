@@ -7,23 +7,23 @@ public class LoansFile extends Loan
 {
 	Scanner in = new Scanner(System.in);
 	 
-	FileWriter file = new FileWriter("Loans.xlsxl", true);
+	FileWriter file = new FileWriter("Loans.txt", true);
 	PrintWriter loanfile = new PrintWriter(file);
 	
-	
-	/*
-	 * Used to create new excel file 
-	 */
 	public LoansFile()
 	{
 		Header();
-		if(fileExists("Loans.xlsxl") == true) 
+		if(fileExists("Loans.txt") == true) 
 		{
 			/**
-			 * Pass results from other methods to the excel doc 
+			 * Pass results from other methods to the excel doc in ze future 
 			 */
 		}
 	}
+	
+	/** 
+	 * Uses exception handling to return whether or not the file exists 
+	 */
 	
 	public boolean fileExists(String fileName)
 	{
@@ -41,6 +41,11 @@ public class LoansFile extends Loan
 		}
 		return true;
 	}
+	
+	
+	/**
+	 * Prints information to the text file
+	 */
 	
 	public void Header()
 	{
