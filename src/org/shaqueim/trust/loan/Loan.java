@@ -2,8 +2,7 @@ package org.shaqueim.trust.loan;
 
 import java.util.Date;
 
-import org.shaqueim.trust.entity.Borrower;
-import org.shaqueim.trust.entity.Lender;
+import org.shaqueim.trust.entity.Entity;
 
 /**
  *
@@ -28,13 +27,13 @@ public interface Loan {
      * Returns the entity who loaned the funds to the borrower
      * @return Lender l
      */
-    public Lender getLender();
+    public Entity getLender();
     
     /**
      * Returns the entity who borrowed the funds from the lender
      * @return Borrower b
      */
-    public Borrower getBorrower();
+    public Entity getBorrower();
     
     /**
      * Checks if the loan is active (IF there is a principal balance)

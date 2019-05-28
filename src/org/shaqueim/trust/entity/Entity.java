@@ -11,6 +11,16 @@ public class Entity {
 	
 	private String FIRST_NAME, LAST_NAME, PHONE_NUMBER;
 	
+	public Entity(String fname, String lname, String phone) {
+		FIRST_NAME = fname;
+		LAST_NAME = lname;
+		PHONE_NUMBER = phone;
+	}
+	
+	public Entity(String fname, String lname) {
+		this(fname, lname, null);
+	}
+	
     public String getFirstName() {
         return this.FIRST_NAME;
     }

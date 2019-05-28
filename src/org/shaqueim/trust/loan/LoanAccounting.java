@@ -108,6 +108,15 @@ public class LoanAccounting {
     }
     
     /**
+     * Summation of interest payment and monthly principal payment without considering
+     * principal balance remaining.
+     * @return double Monthly repayment
+     */
+    public double getMonthlyPayment() {
+    	return getMonthlyInterestRepayment() + getMonthlyPrincipalRepayment();
+    }
+    
+    /**
      * Monthly repayment towards principal without considering balance
      * @return
      */

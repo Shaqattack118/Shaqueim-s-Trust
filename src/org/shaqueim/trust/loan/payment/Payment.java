@@ -1,13 +1,13 @@
 package org.shaqueim.trust.loan.payment;
 
-import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
-import org.apache.commons.math3.util.Precision;
-import org.shaqueim.trust.entity.Borrower;
-import org.shaqueim.trust.entity.Entity;
-import org.shaqueim.trust.loan.Loan;
+import org.shaqueim.trust.TrustUtils;
 import org.shaqueim.trust.loan.LoanAccounting;
+
+import com.shaqueim.trust.Configurations;
+import com.shaqueim.trust.SystemsController;
 
 /**
  *
@@ -15,23 +15,28 @@ import org.shaqueim.trust.loan.LoanAccounting;
  */
 public class Payment implements Comparable<Payment>{
     
-    private Date    date;
-    private LoanAccounting 	loan;
-    private double  interestPaid,
-                    principalPaid;
+	private int
+		identifier;
+    private LocalDateTime    
+    	date;
+    private double  
+    	interestPaid,
+        principalPaid,
+        principalOverpayment = 0;
     
-    public Payment(LoanAccounting loan, Date date, double principalPaid, double interestPaid) {
-        this.date = date;
-        this.loan = loan;
-        this.principalPaid = principalPaid;
-        this.interestPaid = interestPaid;
-    }
-    public Payment(LoanAccounting ln, double totalPaid) {
-        this(new Date(), totalPaid, ln);
+    public Payment(int loanIdentifier, double totalPaid) {
+        this(loanIdentifier, LocalDateTime.now(), totalPaid);
     }
 
-    public Payment(Date date, double totalPaid, LoanAccounting ln) {
-        this(ln, date, Math.max(0, totalPaid-ln.getMonthlyInterestRepayment()), totalPaid-Math.max(0, totalPaid-ln.getMonthlyInterestRepayment()));
+    public Payment(int loanIdentifier, LocalDateTime date, double totalPaid) {
+
+    	identifier = loanIdentifier;
+    	this.date = date;
+		interestPaid = Math.min(totalPaid, getAccounting().getMonthlyInterestRepayment());
+		principalPaid = totalPaid-interestPaid;
+		if(totalPaid > getAccounting().getMonthlyPayment()) {
+			principalOverpayment = totalPaid - interestPaid - getAccounting().getNextPrincipalRepayment();
+		}
     }
 
     public double getInterestPaid() {
@@ -40,8 +45,18 @@ public class Payment implements Comparable<Payment>{
     public double getPrincipalPaid() {
         return principalPaid;
     }
-    public Date getDate() {
+    public int getLoanIdentifier() {
+    	return identifier;
+    }
+    public double getPrincipalOverpayment() {
+    	return principalOverpayment;
+    }
+    public LocalDateTime getDate() {
     	return date;
+    }
+    
+    public LoanAccounting getAccounting() {
+    	return SystemsController.getLoanForIdentifier(identifier).getAccounting();
     }
     
 	@Override
@@ -49,5 +64,16 @@ public class Payment implements Comparable<Payment>{
 		return getDate().compareTo(pmt.getDate());
 	}
 	
+	public String toString() {
+		StringBuilder data = new StringBuilder();
+		data.append("[Payment] Loan Identifier: "+identifier);
+		data.append("; Principal Paid: "+getPrincipalPaid());
+		data.append("; Interest Paid: "+getInterestPaid());
+		data.append("; Principal Overpayment: "+getPrincipalOverpayment());
+		data.append("; Date Paid: "+TrustUtils.formatDate(getDate()));
+		
+		return data.toString();
+		
+	}
     
 }

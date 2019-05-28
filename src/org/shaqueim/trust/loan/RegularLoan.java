@@ -2,8 +2,7 @@ package org.shaqueim.trust.loan;
 
 import java.util.Date;
 
-import org.shaqueim.trust.entity.Borrower;
-import org.shaqueim.trust.entity.Lender;
+import org.shaqueim.trust.entity.Entity;
 
 /**
  *
@@ -16,9 +15,9 @@ public class RegularLoan implements Loan {
     	START, END;
     private LoanAccounting
     	ACCOUNTING;
-    private Borrower 
+    private Entity 
     	BORROWER;
-    private Lender 
+    private Entity 
     	LENDER;
     
     /**
@@ -27,7 +26,7 @@ public class RegularLoan implements Loan {
      * @param loanam Loan Amount
      * @param loanpe  Loan Type
      */
-    public RegularLoan(Borrower b, Lender l, double loanam, int loanpe, double intr) {
+    public RegularLoan(Entity b, Entity l, double loanam, int loanpe, double intr) {
     	setLoanAccounting(new LoanAccounting(loanam, loanpe, intr));
     	setBorrower(b);
     	setLender(l);
@@ -51,11 +50,11 @@ public class RegularLoan implements Loan {
         return END;
     }
     
-    public Lender getLender() {
+    public Entity getLender() {
         return LENDER;
     }
 
-    public Borrower getBorrower() {
+    public Entity getBorrower() {
         return BORROWER;
     }
 
@@ -67,11 +66,11 @@ public class RegularLoan implements Loan {
 		return ACCOUNTING;
 	}
 	
-	public void setBorrower(Borrower b) {
+	public void setBorrower(Entity b) {
 		BORROWER = b;
 	}
 
-	public void setLender(Lender l) {
+	public void setLender(Entity l) {
 		LENDER = l;
 	}
 
