@@ -24,11 +24,8 @@ public class Unix extends Command {
 			int mm = Integer.parseInt(parts[1]);
 			int yy = Integer.parseInt(parts[2]);
 			
-			if(yy < 32) {
-				yy += 2000;
-			}
 			
-			return "UNIX: ["+TrustUtils.toUnixTimeStamp(LocalDateTime.of(yy, mm, dd, 12, 0))+"]";
+			return "UNIX: ["+TrustUtils.getUnixTimeStamp(yy, mm, dd)+"]";
 		} catch(NumberFormatException e) {
 			return getUsageString();
 		}
