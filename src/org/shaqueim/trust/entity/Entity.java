@@ -37,4 +37,7 @@ public class Entity {
         return this.PHONE_NUMBER;
     }
     
+    public String toString() {
+    	return getName() + " - " + getPhoneNumber();
+    }
 }
