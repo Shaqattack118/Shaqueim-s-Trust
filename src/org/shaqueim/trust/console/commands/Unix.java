@@ -15,6 +15,7 @@ public class Unix extends Command {
 		String param = cmds[0];
 		
 		String[] parts = param.split("/");
+		
 		if(parts.length != 3) {
 			return getUsageString();
 		}
@@ -24,8 +25,8 @@ public class Unix extends Command {
 			int mm = Integer.parseInt(parts[1]);
 			int yy = Integer.parseInt(parts[2]);
 			
+			return "UNIX: ["+TrustUtils.getUnixTimeStamp(dd, mm, yy)+"]";
 			
-			return "UNIX: ["+TrustUtils.getUnixTimeStamp(yy, mm, dd)+"]";
 		} catch(NumberFormatException e) {
 			return getUsageString();
 		}
@@ -33,7 +34,7 @@ public class Unix extends Command {
 
 	@Override
 	public String getUsageString() {
-		return System.lineSeparator()+"Usage: /unix dd/mm/yy";
+		return System.lineSeparator()+"Usage: unix dd/mm/yy";
 	}
 
 }

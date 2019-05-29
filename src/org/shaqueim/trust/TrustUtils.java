@@ -14,11 +14,7 @@ import com.shaqueim.trust.Configurations;
 public class TrustUtils {
     
 	
-	public static long getUnixTimeStamp(int dd, int mm, int yy) {
-		if(yy < 32) {
-			yy += 2000;
-		}
-		
+	public static long getUnixTimeStamp(int dd, int mm, int yy) {		
 		return TrustUtils.toUnixTimeStamp(LocalDateTime.of(yy, mm, dd, 12, 0));
 	}
 	public static long toUnixTimeStamp(LocalDateTime date) {
