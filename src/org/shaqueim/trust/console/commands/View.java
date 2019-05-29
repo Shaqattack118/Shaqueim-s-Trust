@@ -7,6 +7,8 @@ import org.shaqueim.trust.entity.Entity;
 import org.shaqueim.trust.loan.Loan;
 import org.shaqueim.trust.loan.RegularLoan;
 
+import com.shaqueim.trust.SystemsController;
+
 public class View extends Command {
 
 	@Override
@@ -17,6 +19,10 @@ public class View extends Command {
 		String param = cmds[0];
 		switch(param) {
 		case "entity": case "Entity":
+
+		case "entities": case"Entities":
+			
+			return SystemsController.getEntities();
 			
 		case "loan": case "Loan":
 			

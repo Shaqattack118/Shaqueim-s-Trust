@@ -45,7 +45,14 @@ public class SystemsController {
 	public static Entity getEntity(int id) {
 		return entities.get(id);
 	}
-
+	public static String getEntities() {
+		StringBuilder sb = new StringBuilder();
+		
+		for (Entity i : entities){
+			sb.append("\n"+i.toString());
+		}
+		return sb.toString();
+	}
 	public static boolean entityExists(Entity e) {
 		return entities.indexOf(e) != -1;
 	}
