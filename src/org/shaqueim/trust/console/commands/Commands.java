@@ -5,7 +5,10 @@ import org.shaqueim.trust.console.Command;
 public class Commands extends Command {
 
 	public String executeCommand(String[] cmds) {
-		return "Works";
+		return "\n/add"
+				+ "\n/save\n"
+				+ "/commands\n"
+				+ "/view\n";
 		
 	}
 
