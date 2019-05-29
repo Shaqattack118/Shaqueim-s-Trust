@@ -22,7 +22,7 @@ import org.shaqueim.trust.loan.payment.Payment;
 public class Initializer {
 	
     public static void main(String[] args) {
-<<<<<<< HEAD
+
     	
         int a = 100000;
         int b = 7;
@@ -31,9 +31,9 @@ public class Initializer {
         SystemsController.addLoan(x);
 
        // SystemsController.loadPayments();
-=======
+
     	//SystemsController.loadPayments();
->>>>>>> 1260ecff69defb3b646e4f93c065388c6229cfd5
+
         
         Console.init();
         Commands.init();
