@@ -27,7 +27,7 @@ public class View extends Command {
 
 	@Override
 	public String getUsageString() {
-		return System.lineSeparator()+"Usage: /view\t[loan,loans,l|entities,entity,e|payment,payments,pmts,p|]";
+		return System.lineSeparator()+"Usage: /view\t[loan,loans,l|entities,entity,e|payment,payments,pmts,p]";
 	}
 
 }

@@ -186,4 +186,15 @@ public class LoanAccounting {
 		return paymentsList;
 	}
 	
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Loan Amount: $"+getLoanAmount());
+		sb.append("\nLoan Period: $"+getLoanPeriod());
+		sb.append("\nInterest Rate: $"+getInterestRate());
+		//sb.append("\nLoan Amount: $"+getLoanAmount());
+		//sb.append("Loan Amount: $"+getLoanAmount());
+		
+		return sb.toString();
+	}
+	
 }

@@ -19,18 +19,16 @@ public class CommandListener extends AbstractAction {
 		}
 		
 		String[] cmds = commandString.split(" ");
-		String response = "("+commandString+")"+": ";
-		if(commandString.startsWith("/") && cmds[0] != "/command") {
-			Command cmd = Command.getCommand(cmds[0].substring(1));
+		String response = "("+cmds[0]+")"+": ";
+		if(cmds[0] != "command") {
+			Command cmd = Command.getCommand(cmds[0]);
 			if(cmd != null) {
 				response += cmd.executeCommand(Arrays.copyOfRange(cmds, 1, cmds.length));
-			} else {
-				Console.log("null cmd"+cmds[0]);
 			}
 		}
 
 		if(response.endsWith("): ")) {
-			Console.log(response + "invalid command");
+			Console.log(response + " undefined command");
 		} else {
 			Console.log(response);
 		}

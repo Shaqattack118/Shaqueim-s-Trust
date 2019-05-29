@@ -12,10 +12,13 @@ import org.shaqueim.trust.loan.Loan;
 import org.shaqueim.trust.loan.payment.Payment;
 
 public class SystemsController {
+	
 	private static final int TIMEZONE = -5;
 	private static ZoneOffset offset = ZoneOffset.ofHours(TIMEZONE);
 	private static ArrayList<Payment> payments = new ArrayList<Payment>();
-
+	private static ArrayList<Entity> entities = new ArrayList<Entity>();
+	private static ArrayList<Loan> loans = new ArrayList<Loan>();
+	
 	private static String generatePaymentString() {
 		StringBuilder pmtS = new StringBuilder();
 		payments.forEach((pmt) -> {
@@ -29,7 +32,6 @@ public class SystemsController {
 		return pmtS.toString();
 	}
 
-	private static ArrayList<Entity> entities = new ArrayList<Entity>();
 
 	public static int entitiesExist(int... ents) {
 		for (int i : ents) {
@@ -52,8 +54,6 @@ public class SystemsController {
 		entities.add(e);
 		return entities.indexOf(e);
 	}
-
-	private static ArrayList<Loan> loans = new ArrayList<Loan>();
 
 	public static int addLoan(Loan l) {
 		loans.add(l);

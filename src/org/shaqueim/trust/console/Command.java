@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.shaqueim.trust.console.commands.Add;
 import org.shaqueim.trust.console.commands.Commands;
+import org.shaqueim.trust.console.commands.Unix;
 import org.shaqueim.trust.console.commands.View;
 
 public abstract class Command {
@@ -16,8 +17,9 @@ public abstract class Command {
 	
 	public static void init() {
 		commands.put("commands", new Commands());
-		commands.put("viewloans", new View());
+		commands.put("view", new View());
 		commands.put("add", new Add());
+		commands.put("unix", new Unix());
 	}
 	
 	

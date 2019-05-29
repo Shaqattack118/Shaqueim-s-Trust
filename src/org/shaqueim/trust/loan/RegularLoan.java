@@ -1,7 +1,8 @@
 package org.shaqueim.trust.loan;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
+import org.shaqueim.trust.TrustUtils;
 import org.shaqueim.trust.entity.Entity;
 
 /**
@@ -11,7 +12,7 @@ import org.shaqueim.trust.entity.Entity;
 public class RegularLoan implements Loan {
 
 	
-    private Date 
+    private LocalDateTime 
     	START, END;
     private LoanAccounting
     	ACCOUNTING;
@@ -41,12 +42,12 @@ public class RegularLoan implements Loan {
     }
 
     @Override
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return START;
     }
 
     @Override
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return END;
     }
     
@@ -78,6 +79,15 @@ public class RegularLoan implements Loan {
 		ACCOUNTING = accounting;
 	}
 
-
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("Lender: "+getLender().toString());
+		sb.append("\nBorrower: "+getLender().toString());
+		sb.append("\nStartDate: "+TrustUtils.formatDate(getStartDate()));
+		sb.append("\nStartDate: "+TrustUtils.formatDate(getEndDate()));
+		sb.append("\n"+getAccounting().toString());
+		
+		return sb.toString();
+	}
     
 }

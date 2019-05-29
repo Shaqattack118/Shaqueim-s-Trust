@@ -1,5 +1,6 @@
 package org.shaqueim.trust.loan;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import org.shaqueim.trust.entity.Entity;
@@ -12,16 +13,16 @@ public interface Loan {
     
 	/**
 	 * Gets the date which the loan as started
-	 * @return Date date
+	 * @return LocalDateTime date
 	 */
-    public Date getStartDate();
+    public LocalDateTime getStartDate();
     
     /**
      * Gets the date in which the loan is projected to end (given past missed payments 
      * and principal offset period
-     * @return Date date
+     * @return LocalDateTime date
      */
-    public Date getEndDate();
+    public LocalDateTime getEndDate();
     
     /**
      * Returns the entity who loaned the funds to the borrower
