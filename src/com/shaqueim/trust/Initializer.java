@@ -29,7 +29,7 @@ public class Initializer {
         RegularLoan x = new RegularLoan(new Entity("Borrower", "1", ""), new Entity("Lender", "1", ""), a, b, 0.1);
         SystemsController.addLoan(x);
 
-        SystemsController.loadPayments();
+       // SystemsController.loadPayments();
         
         Console.init();
         Commands.init();
